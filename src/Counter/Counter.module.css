@@ -4,10 +4,20 @@
     height: 25px;
     background-color: #61dafb;
 }
+
 .button {
-    text-align: center;
     width: 100px;
     height: 25px;
     border-radius: 15px;
     background-color: #61dafb;
+}
+
+.div{
+    background-color: cornsilk;
+    border-width:5px;
+    border-radius: 30px;
+    width: 250px;
+    height: 200px;
+    border-color: black;
+    border-style: solid;
 }
