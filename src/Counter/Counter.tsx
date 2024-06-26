@@ -11,7 +11,7 @@ export const Counter: React.FC = () => {
     const [maxData, setMaxData] = useState<number>(MAX_DATA)
     const [data, setData] = useState<number>(START_DATA)
     const [collapsed, setCollapsed] = useState<boolean>(false)
-    let dis = data >= maxData || data < 0
+    const disabledButton = data >= maxData || data < 0
 
     const onClickIncrement = () => {
         setData(data + 1)
@@ -21,6 +21,7 @@ export const Counter: React.FC = () => {
     }
 
     const startValueHandler = (value: number) => {
+        debugger
         setData(value)
     }
     const maxValueHandler = (value: number) => {
@@ -32,11 +33,12 @@ export const Counter: React.FC = () => {
 
     return (
         <>
-            <div className={classes.count}>
-                <div className={dis ? classes.error : ''}><h1>{data}</h1></div>
+            <div className={disabledButton ? classes.errorCount :classes.count}>
+                <div>
+                    <h1>{disabledButton ? "Enter correct data" : data}</h1></div>
                 <div>
                     <Button onClickHandler={onClickIncrement} name={"Increment"} maxData={maxData} data={data}
-                            startData={data} disable={dis}/>
+                            startData={data} disable={disabledButton}/>
                     <Button onClickHandler={onClickReset} name={"RESET"} startData={data} data={data} maxData={maxData}
                             disable={data === 0}/>
                     <div>
@@ -54,7 +56,7 @@ export const Counter: React.FC = () => {
                                         collapsed={collapsed} onClickHandler={settingHandler}/>
                             </>
                             :
-                            <Button name={"Setting"} data={data} maxData={maxData} startData={data}
+                            <Button name={"Setup menu"} data={data} maxData={maxData} startData={data}
                                     onClickHandler={settingHandler}/>}
                     </div>
                 </div>

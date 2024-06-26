@@ -21,6 +21,15 @@
     border-color: black;
     border-style: solid;
 }
-.error {
+
+.errorCount {
+    background-color: cornsilk;
+    border-width:5px;
+    border-radius: 30px;
+    width: 300px;
+    height: 250px;
+    border-color: black;
+    border-style: solid;
     color: red;
 }
+
