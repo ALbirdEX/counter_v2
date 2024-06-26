@@ -12,12 +12,15 @@
     background-color: #61dafb;
 }
 
-.div{
+.count {
     background-color: cornsilk;
     border-width:5px;
     border-radius: 30px;
-    width: 250px;
-    height: 200px;
+    width: 300px;
+    height: 250px;
     border-color: black;
     border-style: solid;
+}
+.error {
+    color: red;
 }
