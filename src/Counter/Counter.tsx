@@ -9,31 +9,28 @@ const MAX_DATA = 0
 
 export const Counter: React.FC = () => {
 
-    const [maxData, setMaxData] = useState<number>(START_DATA)
-    const [data, setData] = useState<number>(MAX_DATA)
+    const [data, setData] = useState<number>(START_DATA)
+    const [maxData, setMaxData] = useState<number>(MAX_DATA)
     const [collapsed, setCollapsed] = useState<boolean>(false)
 
     useEffect(() => {
-        let valueAsString = localStorage.getItem("maxValue")
-        let valueAsString2 = localStorage.getItem("startValue")
+        let maxValueAsString = localStorage.getItem("maxValue")
+        let startValueAsString = localStorage.getItem("startValue")
 
-        if (valueAsString) {
-            let newValue = JSON.parse(valueAsString)
-            setMaxData(newValue)
+        if (startValueAsString) {
+            let startValue = JSON.parse(startValueAsString)
+            setData(startValue)
         }
-        if (valueAsString2) {
-            let newValue2 = JSON.parse(valueAsString2)
-            setData(newValue2)
+        if (maxValueAsString) {
+            let maxValue = JSON.parse(maxValueAsString)
+            setMaxData(maxValue)
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("maxValue", JSON.stringify(maxData))
-    }, [maxData])
-    useEffect(() => {
         localStorage.setItem("startValue", JSON.stringify(data))
-    }, [data])
-
+        localStorage.setItem("maxValue", JSON.stringify(maxData))
+    }, [data, maxData])
 
     const disabledButton = data >= maxData || data < 0
 
@@ -56,6 +53,23 @@ export const Counter: React.FC = () => {
         setCollapsed(!collapsed)
     }
 
+    const SettingsBlock = () => {
+        return (
+            <>
+                <div>
+                    MAX value:
+                </div>
+                <Input type={"number"} value={maxData} onChange={maxValueHandler}/>
+                <div>
+                    START value:
+                </div>
+                <Input type={"number"} value={data} onChange={startValueHandler}/>
+                <Button name={"Apply"} data={data} maxData={data} startData={data}
+                        collapsed={collapsed} onClickHandler={settingHandler}/>
+            </>
+        )
+    }
+
     return (
         <div className={disabledButton ? classes.errorCount : classes.count}>
             <div>
@@ -67,18 +81,7 @@ export const Counter: React.FC = () => {
                         disable={data === 0}/>
                 <div>
                     {collapsed ?
-                        <>
-                            <div>
-                                MAX value:
-                            </div>
-                            <Input type={"number"} value={maxData} onChange={maxValueHandler}/>
-                            <div>
-                                START value:
-                            </div>
-                            <Input type={"number"} value={data} onChange={startValueHandler}/>
-                            <Button name={"Apply"} data={data} maxData={data} startData={data}
-                                    collapsed={collapsed} onClickHandler={settingHandler}/>
-                        </>
+                        <SettingsBlock/>
                         :
                         <Button name={"Setup menu"} data={data} maxData={maxData} startData={data}
                                 onClickHandler={settingHandler}/>}
