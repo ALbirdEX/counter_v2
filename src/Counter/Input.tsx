@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from 'react';
+import classes from "./Counter.module.css";
 
 type InputPropsType = {
     type: string;
@@ -11,8 +12,6 @@ export const Input = (props: InputPropsType) => {
         props.onChange(Number(event.currentTarget.value))
     }
     return (
-        <div>
-            <input value={props.value} type={props.type} onChange={onChangeHandler}/>
-        </div>
+        <input className={classes.input} value={props.value} type={props.type} onChange={onChangeHandler}/>
     );
 };

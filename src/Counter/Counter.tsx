@@ -9,8 +9,8 @@ const MAX_DATA = 0
 
 export const Counter: React.FC = () => {
 
-    const [data, setData] = useState<number>(START_DATA)
-    const [maxData, setMaxData] = useState<number>(MAX_DATA)
+    const [startValue, setStartValue] = useState<number>(START_DATA)
+    const [maxValue, setMaxValue] = useState<number>(MAX_DATA)
     const [collapsed, setCollapsed] = useState<boolean>(false)
 
     useEffect(() => {
@@ -19,35 +19,35 @@ export const Counter: React.FC = () => {
 
         if (startValueAsString) {
             let startValue = JSON.parse(startValueAsString)
-            setData(startValue)
+            setStartValue(startValue)
         }
         if (maxValueAsString) {
             let maxValue = JSON.parse(maxValueAsString)
-            setMaxData(maxValue)
+            setMaxValue(maxValue)
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("startValue", JSON.stringify(data))
-        localStorage.setItem("maxValue", JSON.stringify(maxData))
-    }, [data, maxData])
+        localStorage.setItem("startValue", JSON.stringify(startValue))
+        localStorage.setItem("maxValue", JSON.stringify(maxValue))
+    }, [startValue, maxValue])
 
-    const disabledButton = data >= maxData || data < 0
+    const disabledButton = startValue >= maxValue || startValue < 0
 
-    const outputValue = disabledButton ? "Enter correct data" : data
+    const outputValue = disabledButton ? "Enter correct value" : startValue
 
     const onClickIncrement = () => {
-        setData(data + 1)
+        setStartValue(startValue + 1)
     }
     const onClickReset = () => {
-        setData(START_DATA)
-        setMaxData(MAX_DATA)
+        setStartValue(START_DATA)
+        setMaxValue(MAX_DATA)
     }
     const startValueHandler = (value: number) => {
-        setData(value)
+        setStartValue(value)
     }
     const maxValueHandler = (value: number) => {
-        setMaxData(value)
+        setMaxValue(value)
     }
     const settingHandler = () => {
         setCollapsed(!collapsed)
@@ -59,12 +59,14 @@ export const Counter: React.FC = () => {
                 <div>
                     MAX value:
                 </div>
-                <Input type={"number"} value={maxData} onChange={maxValueHandler}/>
+                <Input type={"number"} value={maxValue} onChange={maxValueHandler}/>
                 <div>
                     START value:
                 </div>
-                <Input type={"number"} value={data} onChange={startValueHandler}/>
-                <Button name={"Apply"} data={data} maxData={data} startData={data}
+                <div>
+                    <Input type={"number"} value={startValue} onChange={startValueHandler}/>
+                </div>
+                <Button name={"Apply"} data={startValue} maxData={startValue} startData={startValue}
                         collapsed={collapsed} onClickHandler={settingHandler}/>
             </>
         )
@@ -75,15 +77,16 @@ export const Counter: React.FC = () => {
             <div>
                 <h1>{outputValue}</h1></div>
             <div>
-                <Button onClickHandler={onClickIncrement} name={"Increment"} maxData={maxData} data={data}
-                        startData={data} disable={disabledButton}/>
-                <Button onClickHandler={onClickReset} name={"RESET"} startData={data} data={data} maxData={maxData}
-                        disable={data === 0}/>
+                <Button onClickHandler={onClickIncrement} name={"Increment"} maxData={maxValue} data={startValue}
+                        startData={startValue} disable={disabledButton}/>
+                <Button onClickHandler={onClickReset} name={"RESET"} startData={startValue} data={startValue}
+                        maxData={maxValue}
+                        disable={startValue === 0}/>
                 <div>
                     {collapsed ?
                         <SettingsBlock/>
                         :
-                        <Button name={"Setup menu"} data={data} maxData={maxData} startData={data}
+                        <Button name={"Setup menu"} data={startValue} maxData={maxValue} startData={startValue}
                                 onClickHandler={settingHandler}/>}
                 </div>
             </div>

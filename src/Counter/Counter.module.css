@@ -10,6 +10,11 @@
     height: 25px;
     border-radius: 15px;
     background-color: #61dafb;
+    margin: 5px;
+}
+
+.input {
+    border-radius: 8px;
 }
 
 .count {
