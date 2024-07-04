@@ -41,7 +41,7 @@ export const Counter: React.FC = () => {
     }
     const onClickReset = () => {
         setStartValue(START_DATA)
-        setMaxValue(MAX_DATA)
+        //setMaxValue(MAX_DATA)
     }
     const startValueHandler = (value: number) => {
         setStartValue(value)
