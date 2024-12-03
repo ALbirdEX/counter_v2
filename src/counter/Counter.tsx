@@ -66,8 +66,7 @@ export const Counter: React.FC = () => {
                 <div>
                     <Input type={"number"} value={startValue} onChange={startValueHandler}/>
                 </div>
-                <Button name={"Apply"} data={startValue} maxData={startValue} startData={startValue}
-                        collapsed={collapsed} onClickHandler={settingHandler}/>
+                <Button name={"Apply"} onClickHandler={settingHandler}/>
             </>
         )
     }
@@ -77,17 +76,14 @@ export const Counter: React.FC = () => {
             <div>
                 <h1>{outputValue}</h1></div>
             <div>
-                <Button onClickHandler={onClickIncrement} name={"Increment"} maxData={maxValue} data={startValue}
-                        startData={startValue} disable={disabledButton}/>
-                <Button onClickHandler={onClickReset} name={"RESET"} startData={startValue} data={startValue}
-                        maxData={maxValue}
+                <Button onClickHandler={onClickIncrement} name={"Increment"} disable={disabledButton}/>
+                <Button onClickHandler={onClickReset} name={"RESET"}
                         disable={startValue === 0}/>
                 <div>
                     {collapsed ?
                         <SettingsBlock/>
                         :
-                        <Button name={"Setup menu"} data={startValue} maxData={maxValue} startData={startValue}
-                                onClickHandler={settingHandler}/>}
+                        <Button name={"Setup menu"} onClickHandler={settingHandler}/>}
                 </div>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-
 import classes from "./Counter.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {CounterRootStateType} from "./store";
@@ -8,6 +7,8 @@ import {Input} from "./Input";
 import {Button} from "./Button";
 
 export const CounterWithRedux: React.FC = () => {
+
+    // const [animationRef] = useAutoAnimate<HTMLDivElement>()
 
     const data = useSelector<CounterRootStateType, StateType>(state => state.counter)
     const dispatch = useDispatch()
@@ -19,21 +20,18 @@ export const CounterWithRedux: React.FC = () => {
         let startValueAsString = localStorage.getItem("startValue")
 
         if (startValueAsString) {
-            let startValue = JSON.parse(startValueAsString)
-            dispatch(setStartValueAC({data: Number(startValueAsString)}))
+            dispatch(setStartValueAC({data: JSON.parse(startValueAsString)}))
         }
         if (maxValueAsString) {
-            let maxValue = JSON.parse(maxValueAsString)
-            dispatch(setMaxValueAC({data: Number(maxValueAsString)}))
+            dispatch(setMaxValueAC({data: JSON.parse(maxValueAsString)}))
         }
     }, []);
-
-        useEffect(() => {
-            if (startData !== 0 || maxData !== 0) {
-                localStorage.setItem("startValue", JSON.stringify(startData))
-                localStorage.setItem("maxValue", JSON.stringify(maxData))
-            }
-        }, [startData, maxData])
+    useEffect(() => {
+        if (startData !== 0 || maxData !== 0) {
+            localStorage.setItem("startValue", JSON.stringify(startData))
+            localStorage.setItem("maxValue", JSON.stringify(maxData))
+        }
+    }, [startData, maxData])
 
     const disabledButton = primaryData >= maxData || primaryData < 0
 
@@ -68,8 +66,7 @@ export const CounterWithRedux: React.FC = () => {
                 <div>
                     <Input type={"number"} value={startData} onChange={startValueHandler}/>
                 </div>
-                <Button name={"Apply"} data={startData} maxData={startData} startData={startData}
-                        collapsed={collapsed} onClickHandler={settingHandler}/>
+                <Button name={"Collapse"} onClickHandler={settingHandler} disable={disabledButton}/>
             </>
         )
     }
@@ -77,19 +74,17 @@ export const CounterWithRedux: React.FC = () => {
     return (
         <div className={disabledButton ? classes.errorCount : classes.count}>
             <div>
-                <h1>{outputValue}</h1></div>
+                <h1>{outputValue}</h1>
+            </div>
             <div>
-                <Button onClickHandler={onClickIncrement} name={"Increment"} maxData={maxData} data={startData}
-                        startData={startData} disable={disabledButton}/>
-                <Button onClickHandler={onClickReset} name={"RESET"} startData={startData} data={startData}
-                        maxData={maxData}
-                        disable={primaryData === 0}/>
+                <Button onClickHandler={onClickIncrement} name={"Increment"} disable={disabledButton}/>
+                <Button onClickHandler={onClickReset} name={"RESET"} disable={primaryData === 0}/>
+                {/*<div ref={animationRef}>*/}
                 <div>
-                    {collapsed ?
-                        <SettingsBlock/>
-                        :
-                        <Button name={"Setup menu"} data={startData} maxData={maxData} startData={startData}
-                                onClickHandler={settingHandler}/>}
+                    {collapsed
+                        ? <SettingsBlock/>
+                        : <Button name={"Setup menu"}
+                                  onClickHandler={settingHandler}/>}
                 </div>
             </div>
         </div>

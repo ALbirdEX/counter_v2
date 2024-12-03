@@ -1,40 +1,45 @@
-.counter {
-    border-color: black;
-    width: 100px;
-    height: 25px;
-    background-color: #61dafb;
-}
-
-.button {
-    width: 100px;
-    height: 25px;
-    border-radius: 15px;
-    background-color: #61dafb;
-    margin: 5px;
-}
-
-.input {
-    border-radius: 8px;
-}
-
 .count {
-    background-color: cornsilk;
-    border-width:5px;
+    background-color: rgba(199, 44, 156, 0.2);
+    border-width: 5px;
     border-radius: 30px;
     width: 300px;
     height: 250px;
-    border-color: black;
+    border-color: #0a2808;
     border-style: solid;
 }
 
 .errorCount {
-    background-color: cornsilk;
-    border-width:5px;
+    background-color: rgb(232, 58, 58);
+    border-width: 5px;
     border-radius: 30px;
     width: 300px;
     height: 250px;
     border-color: black;
     border-style: solid;
-    color: red;
 }
 
+.button {
+    min-width: 100px;
+    min-height: 25px;
+    border-radius: 15px;
+    background-color: #b9f6ca;
+    margin: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.button:hover {
+    background-color: rgb(107, 164, 141);
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: #3a5b4e;
+}
+
+.input {
+    border-radius: 8px;
+    padding-left: 20px;
+    width: 100px;;
+    background: linear-gradient(70deg, rgb(37, 176, 197), #c46f2c);
+}
