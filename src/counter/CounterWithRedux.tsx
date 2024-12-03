@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import classes from "./Counter.module.css";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,24 +14,26 @@ export const CounterWithRedux: React.FC = () => {
     const {startData, maxData, primaryData} = data
     const [collapsed, setCollapsed] = useState<boolean>(false)
 
-    /*    useEffect(() => {
-            let maxValueAsString = localStorage.getItem("maxValue")
-            let startValueAsString = localStorage.getItem("startValue")
+    useEffect(() => {
+        let maxValueAsString = localStorage.getItem("maxValue")
+        let startValueAsString = localStorage.getItem("startValue")
 
-            if (startValueAsString) {
-                let startValue = JSON.parse(startValueAsString)
-                setStartValue(startValue)
-            }
-            if (maxValueAsString) {
-                let maxValue = JSON.parse(maxValueAsString)
-                setMaxValue(maxValue)
-            }
-        }, []);
+        if (startValueAsString) {
+            let startValue = JSON.parse(startValueAsString)
+            dispatch(setStartValueAC({data: Number(startValueAsString)}))
+        }
+        if (maxValueAsString) {
+            let maxValue = JSON.parse(maxValueAsString)
+            dispatch(setMaxValueAC({data: Number(maxValueAsString)}))
+        }
+    }, []);
 
         useEffect(() => {
-            localStorage.setItem("startValue", JSON.stringify(startValue))
-            localStorage.setItem("maxValue", JSON.stringify(maxValue))
-        }, [startValue, maxValue])*/
+            if (startData !== 0 || maxData !== 0) {
+                localStorage.setItem("startValue", JSON.stringify(startData))
+                localStorage.setItem("maxValue", JSON.stringify(maxData))
+            }
+        }, [startData, maxData])
 
     const disabledButton = primaryData >= maxData || primaryData < 0
 
