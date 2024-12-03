@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Counter/Counter.module.css'
+import classes from './counter/Counter.module.css'
 
 type PropsTypeButton = {
     name: string;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Button} from "./Button";
 import classes from './Counter.module.css'
 import {Input} from "./Input";
+import {Button} from "./Button";
 
 
 const START_DATA = 0

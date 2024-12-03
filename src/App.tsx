@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import {Counter} from "./Counter/Counter";
+import {CounterWithRedux} from "./counter/CounterWithRedux";
+
 
 function App() {
     return (
         <div className="App">
             <p>
-                <Counter/>
+                <CounterWithRedux/>
             </p>
         </div>
     );
