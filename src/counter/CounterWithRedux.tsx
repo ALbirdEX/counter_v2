@@ -33,7 +33,7 @@ export const CounterWithRedux: React.FC = () => {
             localStorage.setItem('maxValue', JSON.stringify(maxData))
         }
     }, [startData, maxData])
-    const disabledButton = primaryData >= maxData || primaryData < 0
+    const disabledButton = primaryData >= maxData || primaryData < 0 || startData >= maxData
 
     const outputValue = disabledButton ? 'Enter correct value' : primaryData
 
