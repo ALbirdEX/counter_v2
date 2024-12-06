@@ -3,12 +3,13 @@ import classes from "./Counter.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {CounterRootStateType} from "./store";
 import {increaseAC, resetAC, setMaxValueAC, setStartValueAC, StateType} from "./counter-reducer";
-import {Input} from "./Input";
 import {Button} from "./Button";
+import {SettingsBlock} from "./SettingBlock";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 export const CounterWithRedux: React.FC = () => {
 
-    // const [animationRef] = useAutoAnimate<HTMLDivElement>()
+    const [animationRef] = useAutoAnimate<HTMLDivElement>()
 
     const data = useSelector<CounterRootStateType, StateType>(state => state.counter)
     const dispatch = useDispatch()
@@ -53,39 +54,29 @@ export const CounterWithRedux: React.FC = () => {
         setCollapsed(!collapsed)
     }
 
-    const SettingsBlock = () => {
-        return (
-            <>
-                <div>
-                    MAX value:
-                </div>
-                <Input type={"number"} value={maxData} onChange={maxValueHandler}/>
-                <div>
-                    START value:
-                </div>
-                <div>
-                    <Input type={"number"} value={startData} onChange={startValueHandler}/>
-                </div>
-                <Button name={"Collapse"} onClickHandler={settingHandler} disable={disabledButton}/>
-            </>
-        )
-    }
-
     return (
         <div className={disabledButton ? classes.errorCount : classes.count}>
             <div>
                 <h1>{outputValue}</h1>
             </div>
-            <div>
-                <Button onClickHandler={onClickIncrement} name={"Increment"} disable={disabledButton}/>
-                <Button onClickHandler={onClickReset} name={"RESET"} disable={primaryData === 0}/>
-                {/*<div ref={animationRef}>*/}
-                <div>
-                    {collapsed
-                        ? <SettingsBlock/>
-                        : <Button name={"Setup menu"}
-                                  onClickHandler={settingHandler}/>}
-                </div>
+            <div ref={animationRef}>
+                {collapsed
+                    ? <SettingsBlock maxData={maxData}
+                                     startData={startData}
+                                     settingHandler={settingHandler}
+                                     maxValueHandler={maxValueHandler}
+                                     startValueHandler={startValueHandler}/>
+                    : <div>
+                        <div><h5>START: {startData} MAX: {maxData}</h5></div>
+                        <Button onClickHandler={onClickIncrement} name={"Increment"} disable={disabledButton}/>
+                        <Button onClickHandler={onClickReset} name={"RESET"} disable={primaryData === 0}/>
+                        {/*<div ref={animationRef}>*/}
+                        <div>
+                            <Button name={"Setup menu"}
+                                    onClickHandler={settingHandler}/>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     );

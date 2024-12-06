@@ -30,7 +30,7 @@
 
 .button:hover {
     background-color: rgb(107, 164, 141);
-    cursor: pointer;
+    cursor: url(../../public/iconTap.png) 12 0, auto;
 }
 
 .button:active {

@@ -16,7 +16,7 @@ export type StateType = {
 const initialState: StateType = {
     startData: 0,
     maxData: 0,
-    primaryData:0
+    primaryData: 0
 }
 
 export const counterReducer = (state: StateType = initialState, action: ActionType): StateType => {

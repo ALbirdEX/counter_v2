@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import classes from "./Counter.module.css";
 
 type InputPropsType = {
@@ -8,16 +8,21 @@ type InputPropsType = {
 }
 
 export const Input = (props: InputPropsType) => {
+    debugger
+
+    const [meaning, setMeaning] = useState(props.value)
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        props.onChange(Number(event.currentTarget.value))
+        setMeaning(Number(event.currentTarget.value))
+    }
+    const onBlurHandler = () => {
+        props.onChange(meaning)
     }
 
     return (
         <input className={classes.input}
-               value={props.value}
-               type={props.type}
+               value={meaning}
                onChange={onChangeHandler}
-        />
+               onBlur={onBlurHandler}/>
     );
 };
