@@ -1,14 +1,16 @@
+/*
 .App {
     width: 100vw;
     height: 100vh;
     background: linear-gradient(70deg, #25b0c5, #c46f2c);
 }
+*/
 
-/*.App {
+.App {
     width: 100vw;
     height: 100vh;
     background: #25b0c5;
-    animation: background 60s infinite alternate;
+    animation: background 8s infinite alternate;
 }
 
 @keyframes background {
@@ -16,7 +18,7 @@
         background: #c46f2c;
         box-shadow: #4ecd32 inset;
     }
-}*/
+}
 .App p {
     text-align: center;
     position: absolute;

@@ -68,7 +68,8 @@ export const CounterWithRedux: React.FC = () => {
                     : <div>
                         <div><h5>START: {startData} MAX: {maxData}</h5></div>
                         <Button onClickHandler={onClickIncrement} name={'Increment'} disable={disabledButton}/>
-                        <Button onClickHandler={onClickReset} name={'RESET'} disable={primaryData === 0}/>
+                        <Button onClickHandler={onClickReset} name={'RESET'}
+                                disable={primaryData === 0 || startData === maxData}/>
                         {/*<div ref={animationRef}>*/}
                         <div>
                             <Button name={'Setup menu'}

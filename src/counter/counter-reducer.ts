@@ -25,7 +25,7 @@ export const counterReducer = (state: StateType = initialState, action: ActionTy
             return {...state, primaryData: state.primaryData + 1}
         }
         case 'RESET-VALUE': {
-            return {...state, primaryData: 0}
+            return {...state, primaryData: state.startData}
         }
         case 'SET-START-VALUE': {
             return {...state, startData: action.payload.data, primaryData: action.payload.data}
