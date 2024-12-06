@@ -21,7 +21,7 @@ export const Input = (props: InputPropsType) => {
 
     return (
         <input className={classes.input}
-               value={meaning}
+               value={meaning === 0? '' : meaning}
                onChange={onChangeHandler}
                onBlur={onBlurHandler}/>
     );

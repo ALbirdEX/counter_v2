@@ -25,14 +25,14 @@ export const SettingsBlock = (props: SettingsBlockPropsType) => {
             <div>
                 MAX value:
             </div>
-            <Input type={"number"} value={maxData} onChange={maxValueHandler}/>
+            <Input type={'number'} value={maxData} onChange={maxValueHandler}/>
             <div>
                 START value:
             </div>
             <div>
-                <Input type={"number"} value={startData} onChange={startValueHandler}/>
+                <Input type={'number'} value={startData} onChange={startValueHandler}/>
             </div>
-            <Button name={"Collapse"} onClickHandler={settingHandler}/>
+            <Button name={'Collapse'} onClickHandler={settingHandler}/>
         </>
     )
 }

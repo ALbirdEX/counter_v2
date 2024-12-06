@@ -20,18 +20,17 @@ const initialState: StateType = {
 }
 
 export const counterReducer = (state: StateType = initialState, action: ActionType): StateType => {
-    debugger
     switch (action.type) {
-        case "INCREASE-VALUE": {
+        case 'INCREASE-VALUE': {
             return {...state, primaryData: state.primaryData + 1}
         }
-        case "RESET-VALUE": {
-            return {...state, startData: 0, primaryData: 0}
+        case 'RESET-VALUE': {
+            return {...state, primaryData: 0}
         }
-        case "SET-START-VALUE": {
+        case 'SET-START-VALUE': {
             return {...state, startData: action.payload.data, primaryData: action.payload.data}
         }
-        case "SET-MAX-VALUE": {
+        case 'SET-MAX-VALUE': {
             debugger
             return {...state, maxData: action.payload.data}
         }
